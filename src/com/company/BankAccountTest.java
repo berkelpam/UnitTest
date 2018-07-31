@@ -11,28 +11,28 @@ public class BankAccountTest {
     @Test
     public void getBalance() throws Exception {
         BankAccount bankAccount = new BankAccount("Jan","Jansen",2300);
-        assert (2300 ==bankAccount.getBalance());
+        assertEquals(2300,bankAccount.getBalance(),0);
     }
 
     @Test
     public void deposit() throws Exception {
         BankAccount bankAccount = new BankAccount("Jan","Jansen",2300);
         bankAccount.deposit(1200,false);
-        assert(3500==bankAccount.getBalance());
+        assertEquals(3500,bankAccount.getBalance(),0);
     }
 
     @Test
     public void withdraw() throws Exception {
         BankAccount bankAccount = new BankAccount("Jan","Jansen",2300);
         bankAccount.withdraw(1200,false);
-        assert(1000==bankAccount.getBalance());
+        assertEquals(1100,bankAccount.getBalance(),0);
     }
 
     @Test
     public void cancelAccount () throws Exception{
         BankAccount bankAccount = new BankAccount("Jan", "Jansen", 1000);
         bankAccount.Cancel();
-        assert(0==bankAccount.getBalance());
+        assertEquals(0,bankAccount.getBalance(),0);
 
     }
 
@@ -40,15 +40,15 @@ public class BankAccountTest {
     public void overdrawAccount() throws Exception{
         BankAccount bankAccount = new BankAccount("Jan","Jansen",100);
         bankAccount.withdraw(101,false);
-        assert (-1==bankAccount.getBalance());
-
+        assertEquals(100,bankAccount.getBalance(),0);
     }
 
     @Test
     public void withdrawNegativeAmount () throws Exception{
         BankAccount bankAccount = new BankAccount("Jan", "Janssen",1);
         bankAccount.withdraw(-1,false);
-        assertEquals(9,bankAccount.getBalance());
+//        assertEquals(9,bankAccount.getBalance());
+        assertEquals(1,bankAccount.getBalance(),0);
     }
 
 }
