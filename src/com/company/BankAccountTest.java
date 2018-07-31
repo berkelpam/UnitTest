@@ -24,7 +24,7 @@ public class BankAccountTest {
     @Test
     public void withdraw() throws Exception {
         BankAccount bankAccount = new BankAccount("Jan", "Jansen", 2300);
-        bankAccount.withdraw(1200, false);
+        bankAccount.withdraw(1200, false,bankAccount.isOverdrawAllowed());
         assertEquals(1100, bankAccount.getBalance(), 0);
     }
 
@@ -38,15 +38,21 @@ public class BankAccountTest {
     @Test
     public void overdrawAccount() throws Exception {
         BankAccount bankAccount = new BankAccount("Jan", "Jansen", 100);
-        bankAccount.withdraw(101, false);
+        bankAccount.withdraw(101, false,bankAccount.isOverdrawAllowed());
         assertEquals(100, bankAccount.getBalance(), 0);
     }
 
     @Test
     public void withdrawNegativeAmount() throws Exception {
         BankAccount bankAccount = new BankAccount("Jan", "Janssen", 1);
-        bankAccount.withdraw(-1, false);
+        bankAccount.withdraw(-1, false,bankAccount.isOverdrawAllowed());
         assertEquals(1, bankAccount.getBalance(), 0);
     }
 
+    @Test
+    public void overdrawCreditAccount() throws Exception {
+        creditAccount bankAccount = new creditAccount("Jan", "Jansen", 100);
+        bankAccount.withdraw(101, false,bankAccount.isOverdrawAllowed());
+        assertEquals(-1, bankAccount.getBalance(), 0);
+    }
 }

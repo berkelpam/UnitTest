@@ -8,6 +8,7 @@ public class BankAccount {
     private String firstName;
     private String lastName;
     private double balance;
+    private final boolean overdrawAllowed = false;
 
     public BankAccount(String firstName, String lastName, double balance) {
         this.firstName = firstName;
@@ -22,38 +23,32 @@ public class BankAccount {
         return balance;
     }
 
+    public boolean isOverdrawAllowed() {
+        return overdrawAllowed;
+    }
+
     public double deposit(double amount, boolean branch) {
         balance += amount;
 
         return balance;
     }
 
-    public double withdraw(double amount, boolean branch) {
-
-        if ((amount > 0) && (amount < balance)) {
-            balance -= amount;
-        } else {
-            if (amount < 0) {
-                System.out.println("Cannot withdraw a negative amount.");
+    public double withdraw(double amount, boolean branch, boolean overdrawAllowed) {
+        if (amount > 0) {
+            if (overdrawAllowed) {
+                balance -= amount;
             } else {
-                System.out.println("Cannot withdraw more than the current balance.");
+                if (amount < balance) {
+                    //withdaw allowed
+                    balance -= amount;
+                } else {
+                    //withdraw not allowed
+                    System.out.println("Cannot withdraw more than the current balance.");
+                }
             }
-        }
-
-        return balance;
-    }
-    public double withdraw(double amount, boolean branch,) {
-
-        if ((amount > 0) && (amount < balance)) {
-            balance -= amount;
         } else {
-            if (amount < 0) {
-                System.out.println("Cannot withdraw a negative amount.");
-            } else {
-                System.out.println("Cannot withdraw more than the current balance.");
-            }
+            System.out.println("Cannot withdraw a negative amount.");
         }
-
         return balance;
     }
 
