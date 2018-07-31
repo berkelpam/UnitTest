@@ -42,6 +42,20 @@ public class BankAccount {
 
         return balance;
     }
+    public double withdraw(double amount, boolean branch,) {
+
+        if ((amount > 0) && (amount < balance)) {
+            balance -= amount;
+        } else {
+            if (amount < 0) {
+                System.out.println("Cannot withdraw a negative amount.");
+            } else {
+                System.out.println("Cannot withdraw more than the current balance.");
+            }
+        }
+
+        return balance;
+    }
 
     public void Cancel() {
         emptyAccount();

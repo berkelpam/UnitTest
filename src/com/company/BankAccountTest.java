@@ -46,7 +46,6 @@ public class BankAccountTest {
     public void withdrawNegativeAmount() throws Exception {
         BankAccount bankAccount = new BankAccount("Jan", "Janssen", 1);
         bankAccount.withdraw(-1, false);
-//        assertEquals(9,bankAccount.getBalance());
         assertEquals(1, bankAccount.getBalance(), 0);
     }
 
