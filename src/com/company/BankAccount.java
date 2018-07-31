@@ -22,21 +22,20 @@ public class BankAccount {
         return balance;
     }
 
-    public double deposit (double amount, boolean branch){
+    public double deposit(double amount, boolean branch) {
         balance += amount;
 
         return balance;
     }
 
-    public double withdraw (double amount, boolean branch){
+    public double withdraw(double amount, boolean branch) {
 
-        if ((amount>0)&& (amount < balance)) {
+        if ((amount > 0) && (amount < balance)) {
             balance -= amount;
-        }
-        else{
-            if (amount<0){
+        } else {
+            if (amount < 0) {
                 System.out.println("Cannot withdraw a negative amount.");
-            }else{
+            } else {
                 System.out.println("Cannot withdraw more than the current balance.");
             }
         }
@@ -45,10 +44,10 @@ public class BankAccount {
     }
 
     public void Cancel() {
-       emptyAccount();
+        emptyAccount();
     }
 
     private void emptyAccount() {
-        this.balance=0;
+        this.balance = 0;
     }
 }
